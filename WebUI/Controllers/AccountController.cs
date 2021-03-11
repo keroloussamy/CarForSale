@@ -19,6 +19,7 @@ namespace WebUI.Controllers
         public ActionResult Register() => View();
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterVM user)
         {
             if (ModelState.IsValid == false)
@@ -36,7 +37,7 @@ namespace WebUI.Controllers
                         );
                 ApplicationUserIdentity identityUser = accountAppService.Find(user.UserName, user.PasswordHash);
                 signinmanager.SignIn(identityUser, true, true);
-                return RedirectToAction("Index", "Order");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -64,7 +65,7 @@ namespace WebUI.Controllers
                         new ApplicationUserManager(), owinMAnager
                         );
                 signinmanager.SignIn(identityUser, true, true);
-                return RedirectToAction("Index", "Order");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -78,7 +79,7 @@ namespace WebUI.Controllers
         {
             IAuthenticationManager owinMAnager = HttpContext.GetOwinContext().Authentication;
             owinMAnager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Login");
+            return RedirectToAction("Index","Home");
         }
 
     }

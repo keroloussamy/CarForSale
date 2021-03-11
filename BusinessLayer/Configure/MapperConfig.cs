@@ -11,6 +11,7 @@ namespace BusinessLayer.Configure
 {
     public static class MapperConfig
     {
+        
         public static IMapper Mapper { get; set; }
         static MapperConfig()
         {
@@ -19,8 +20,11 @@ namespace BusinessLayer.Configure
                 {
                     cfg.CreateMap<Car, CarVM>().ReverseMap();
                     cfg.CreateMap<ApplicationUserIdentity, LoginVM>().ReverseMap();
-                    cfg.CreateMap<ApplicationUserIdentity, RegisterVM>().ReverseMap();
-                    //cfg.CreateMap<IdentityResult, ResultStatue>().ReverseMap();
+                    cfg.CreateMap<ApplicationUserIdentity, RegisterVM>()
+                    .ForMember(dst => dst.City, src => src.MapFrom(u => u.Address.City))
+                    .ForMember(dst => dst.Direction, src => src.MapFrom(u => u.Address.Direction))
+                    .ForMember(dst => dst.Street, src => src.MapFrom(u => u.Address.Street))
+                    .ReverseMap();
 
                 });
             Mapper = config.CreateMapper();
