@@ -179,7 +179,7 @@ namespace DAL
     {
 
         public ApplicationDBContext() :
-            base("Data Source=.;Initial Catalog=CarForSale;Integrated Security=True")
+            base("name=CS")
         {
 
         }
