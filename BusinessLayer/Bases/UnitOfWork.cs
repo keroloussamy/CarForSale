@@ -82,5 +82,16 @@ namespace BusinessLayer.Bases
                 return message;
             }
         }
+
+        public BrandRepository brand;//=> throw new NotImplementedException();
+        public BrandRepository Brand
+        {
+            get
+            {
+                if (brand == null)
+                    brand = new BrandRepository(EC_DbContext);
+                return brand;
+            }
+        }
     }
 }

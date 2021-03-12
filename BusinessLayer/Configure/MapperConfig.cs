@@ -20,6 +20,7 @@ namespace BusinessLayer.Configure
                 {
                     cfg.CreateMap<Car, CarVM>().ReverseMap();
                     cfg.CreateMap<Message, MessageVM>().ReverseMap();
+                    cfg.CreateMap<Brand, BrandVM>().ReverseMap();
                     cfg.CreateMap<ApplicationUserIdentity, LoginVM>().ReverseMap();
                     cfg.CreateMap<ApplicationUserIdentity, RegisterVM>()
                     .ForMember(dst => dst.City, src => src.MapFrom(u => u.Address.City))
