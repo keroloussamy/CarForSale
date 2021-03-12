@@ -41,7 +41,7 @@ namespace WebUI.Areas.Accounts
                 accountAppService.AssignToRole(identityUser.Id, "Dealer");  //-------------
                 
                 signinmanager.SignIn(identityUser, true, true);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home");//Dealer area 
             }
             else
             {

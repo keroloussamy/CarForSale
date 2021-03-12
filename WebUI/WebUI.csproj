@@ -239,6 +239,7 @@
     <Compile Include="Areas\Admin\Controllers\BrandController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
     <Compile Include="Areas\Dealer\Controllers\CarController.cs" />
+    <Compile Include="Areas\Dealer\Controllers\MessageController.cs" />
     <Compile Include="Areas\Dealer\DealerAreaRegistration.cs" />
     <Compile Include="Areas\Accounts\Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -309,6 +310,7 @@
     <Folder Include="Areas\Accounts\Views\Shared\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Dealer\Data\" />
+    <Folder Include="Areas\Dealer\Views\Message\" />
     <Folder Include="Content\Images\" />
     <Folder Include="Models\" />
   </ItemGroup>

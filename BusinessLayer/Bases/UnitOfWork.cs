@@ -71,5 +71,16 @@ namespace BusinessLayer.Bases
                 return role;
             }
         }
+
+        public MessageRepository message;
+        public MessageRepository Message
+        {
+            get
+            {
+                if (message == null)
+                    message = new MessageRepository(EC_DbContext);
+                return message;
+            }
+        }
     }
 }
