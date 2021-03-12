@@ -71,6 +71,7 @@
     <Compile Include="Repositories\CarRepository.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="ViewModels\CarVM.cs" />
+    <Compile Include="ViewModels\DealerVM.cs" />
     <Compile Include="ViewModels\LoginVM.cs" />
     <Compile Include="ViewModels\RegisterVM.cs" />
   </ItemGroup>

@@ -103,7 +103,7 @@ namespace DAL
         
         public virtual ICollection<Message> Massages { get; set; }
         public virtual ICollection<Car> Cars { get; set; }
-
+        
     }
     public enum City
     {

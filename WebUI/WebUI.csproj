@@ -237,6 +237,8 @@
     <Compile Include="Areas\Accounts\AccountsAreaRegistration.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BrandController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
+    <Compile Include="Areas\Dealer\Controllers\CarController.cs" />
     <Compile Include="Areas\Dealer\DealerAreaRegistration.cs" />
     <Compile Include="Areas\Accounts\Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -264,6 +266,14 @@
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Accounts\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\Create.cshtml" />
+    <Content Include="Areas\Dealer\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Dealer\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Dealer\Views\Car\Index.cshtml" />
+    <Content Include="Areas\Dealer\Views\Car\Details.cshtml" />
+    <Content Include="Areas\Dealer\Views\Car\Create.cshtml" />
+    <Content Include="Areas\Dealer\Views\Car\Edit.cshtml" />
+    <Content Include="Areas\Dealer\Views\Car\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -288,21 +298,19 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Areas\Accounts\Views\Account\Register.cshtml" />
     <Content Include="Areas\Accounts\Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Accounts\Data\" />
     <Folder Include="Areas\Accounts\Views\Shared\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Dealer\Controllers\" />
     <Folder Include="Areas\Dealer\Data\" />
-    <Folder Include="Areas\Dealer\Views\Shared\" />
+    <Folder Include="Content\Images\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Brand\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

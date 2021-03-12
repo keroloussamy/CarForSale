@@ -29,6 +29,7 @@ namespace WebUI.Areas.Accounts
             IdentityResult result = accountAppService.Register(user);
             if (result.Succeeded)
             {
+                
                 IAuthenticationManager owinMAnager = HttpContext.GetOwinContext().Authentication;
                 //SignIn
                 SignInManager<ApplicationUserIdentity, string> signinmanager =
@@ -36,6 +37,9 @@ namespace WebUI.Areas.Accounts
                         new ApplicationUserManager(), owinMAnager
                         );
                 ApplicationUserIdentity identityUser = accountAppService.Find(user.UserName, user.PasswordHash);
+                
+                accountAppService.AssignToRole(identityUser.Id, "Dealer");  //-------------
+                
                 signinmanager.SignIn(identityUser, true, true);
                 return RedirectToAction("Index", "Home");
             }
