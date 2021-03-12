@@ -24,6 +24,10 @@ namespace BusinessLayer.Configure
                     .ForMember(dst => dst.City, src => src.MapFrom(u => u.Address.City))
                     .ForMember(dst => dst.Direction, src => src.MapFrom(u => u.Address.Direction))
                     .ForMember(dst => dst.Street, src => src.MapFrom(u => u.Address.Street))
+                    //.ForMember(dst => dst.UserName, src => src.MapFrom(u => u.User.UserName))
+                    //.ForMember(dst => dst.Email, src => src.MapFrom(u => u.User.Email))
+                    //.ForMember(dst => dst.PasswordHash, src => src.MapFrom(u => u.User.PasswordHash))
+                    //.ForMember(dst => dst.PhoneNumber, src => src.MapFrom(u => u.User.PhoneNumber))
                     .ReverseMap();
 
                 });
