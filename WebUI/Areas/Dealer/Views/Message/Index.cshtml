@@ -1,0 +1,124 @@
+﻿@model IEnumerable<BusinessLayer.ViewModels.MessageVM>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.body)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr id="row_@item.Id">
+    <td>
+        @Html.DisplayFor(modelItem => item.body)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FirstName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LastName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Phone)
+    </td>
+    <td>
+        @Html.ActionLink("See", "Details", new { id = item.Id }) |
+    </td>
+    <td>
+        <a href="#" class="btn btn-danger" onclick="ConfirmDelete(@item.Id)"><i class="glyphicon glyphicon-trash"></i></a> 
+    </td>
+</tr>
+    }
+
+</table>
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Delete Message</h3>
+            </div>
+            <div class="modal-body">
+                <h4>Are you sure you want to Remove this Message?</h4>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                <a href="#" class="btn btn-success" onclick="DeleteMessage()">Confirm</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@*hidden field for storing current employeeId*@
+<input type="hidden" id="hiddenMessageId" />
+
+
+@section scripts{
+    <script>
+
+
+
+        var ConfirmDelete = function (MessageId) {
+
+            $("#hiddenMessageId").val(MessageId);
+            $("#myModal").modal('show');
+
+        }
+
+        var DeleteMessage = function () {
+
+
+
+            var empId = $("#hiddenMessageId").val();
+
+            $.ajax({
+
+                type: "POST",
+                url: "/Message/Delete",
+                data: { Id: empId },
+                success: function (result) {
+
+                    $("#myModal").modal("hide");
+                    $("#row_" + empId).remove();
+
+                }
+
+            })
+
+        }
+
+
+
+    </script>
+
+}

@@ -263,12 +263,9 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Dealer\Views\web.config" />
     <Content Include="Areas\Accounts\Views\web.config" />
-    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Accounts\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Create.cshtml" />
     <Content Include="Areas\Dealer\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Dealer\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Dealer\Views\Car\Index.cshtml" />
     <Content Include="Areas\Dealer\Views\Car\Details.cshtml" />
     <Content Include="Areas\Dealer\Views\Car\Create.cshtml" />
@@ -279,6 +276,10 @@
     <Content Include="Areas\Admin\Views\Brand\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Brand\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Brand\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Dealer\Views\Message\Index.cshtml" />
+    <Content Include="Areas\Dealer\Views\Message\Details.cshtml" />
+    <Content Include="Areas\Dealer\Views\Message\Create.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -313,8 +314,9 @@
     <Folder Include="Areas\Accounts\Data\" />
     <Folder Include="Areas\Accounts\Views\Shared\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Dealer\Data\" />
-    <Folder Include="Areas\Dealer\Views\Message\" />
+    <Folder Include="Areas\Dealer\Views\Shared\" />
     <Folder Include="Content\Images\" />
     <Folder Include="Models\" />
   </ItemGroup>

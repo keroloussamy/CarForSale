@@ -4,21 +4,24 @@
 }
 
 <h2>Add New Role</h2>
-<ul>
-    @if (ViewBag.Error2 != null)
-    {
-        foreach (var item in ViewBag.Error2)
-        {
-            <li>@item</li>
-        }
-    }
-    <li>@ViewBag.Error1</li>
-</ul>
-@using (Html.BeginForm())
+@if (ViewBag.Error2 != null)
 {
-    @Html.Label("Role Name")
-    @Html.Editor("RoleName")
+    <ul>
 
-    <input type="submit" />
+        @foreach (var item in ViewBag.Error2)
+        {
+        <li>@item</li>
+        }
+        
+        <li>@ViewBag.Error1</li>
+    </ul>
 }
+    @using (Html.BeginForm())
+    {
+        @Html.Label("Role Name") 
+
+        @Html.Editor("RoleName")
+
+        <input type="submit" />
+    }
 

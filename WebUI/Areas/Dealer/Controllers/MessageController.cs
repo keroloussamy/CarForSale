@@ -14,7 +14,7 @@ namespace WebUI.Areas.Dealer.Controllers
     {
         // GET: Dealer/Message
         MessageAppService messageAppService = new MessageAppService();
-        UnitOfWork unitOfWork = new UnitOfWork();
+
         public ActionResult Index()
         {
             return View(messageAppService.GetAllMessage().Where(c => c.DealerId == User.Identity.GetUserId()));
@@ -70,7 +70,7 @@ namespace WebUI.Areas.Dealer.Controllers
 
 
 
-
+/*
         // GET: Dealer/Message/Edit/5
         public ActionResult Edit(int id)
         {
@@ -102,33 +102,32 @@ namespace WebUI.Areas.Dealer.Controllers
                 return View(messageVM);
             }
         }
-
+*/
 
 
 
 
         // GET: Dealer/Message/Delete/5
-        public ActionResult Delete(int id)
-        {
-            var message = messageAppService.GetMessage(id);
-            if (message == null)
-            {
-                return HttpNotFound();
-            }
-            return View(message);
-        }
+        //public ActionResult Delete(int id)
+        //{
+        //    var message = messageAppService.GetMessage(id);
+        //    if (message == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(message);
+        //}
 
         // POST: Dealer/Message/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+
+
+        public JsonResult Delete(int id)
         {
             if (messageAppService.DeleteMessage(id))
-                return RedirectToAction("Index");
+                return Json(new { status = "Success" });
             else
             {
-                var message = messageAppService.GetMessage(id);
-                return View(message);
+                return Json(new { status = "Faild" });
             }
         }
     }

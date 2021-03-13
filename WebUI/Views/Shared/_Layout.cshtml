@@ -16,13 +16,36 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Cars For Sale", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { })</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Condition
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Used", "Used", "Home", new { area = "" }, new { })</li>
+                            <li>@Html.ActionLink("New", "New", "Home", new { area = "" }, new { })</li>
+                        </ul>
+                    </li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Add New Brand", "Index", "Brand", new { area = "Admin" }, new { })</li>
+                        <li>@Html.ActionLink("Add New Role", "Index", "Role", new { area = "Admin" }, new { })</li>
+                    }
+                    else if (User.IsInRole("Dealer"))
+                    {
+                        <li>@Html.ActionLink("My Cars", "Index", "Car", new { area = "Dealer" }, new { })</li>
+                        <li>@Html.ActionLink("Messages", "Index", "Message", new { area = "Dealer" }, new { })</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { })</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { })</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
