@@ -5,66 +5,86 @@
 }
 
 <h2>@ViewBag.CarType </h2>
+@foreach (var item in Model)
+{
+    @*<tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mileage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Engine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DealerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrandId)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.Id })
+            </td>
+        </tr>*@
+    string ID = "myModal" + item.Id;
+    <div class="row">
+        <div class="col-md-9">
+            <div class="jumbotron" style="padding: 20px !important;box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Model)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Mileage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Engine)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Color)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DealerId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BrandId)
-        </th>
-        <th></th>
-    </tr>
+                <div class="row">
+                    <div class="col-md-5">
+                        <img src="~/Content/Images/@item.Image" style="width:100%; border-radius:10px">
+                    </div>
+                    <div class="col-md-7" style="margin-top:10px">
+                        <p><span style="font-weight:bold">Model</span>&nbsp;&nbsp;&nbsp;&nbsp;: @Html.DisplayFor(modelItem => item.Model)</p>
+                        <p><span style="font-weight:bold">Mileage</span>  : @Html.DisplayFor(modelItem => item.Mileage)</p>
+                        <p><span style="font-weight:bold">Price</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: @Html.DisplayFor(modelItem => item.Price)</p>
+                    </div>
+                </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Model)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mileage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Engine)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Color)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Image)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DealerId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BrandId)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) 
-        </td>
-    </tr>
+                <div class="col-md-12">
+                    <hr class="my-4" style="border-color:red">
+                </div>
+                <div style="text-align:right;">
+                    <!-- Trigger the modal with a button -->
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#@ID">CALL</button>
+                    <a class="btn btn-primary" href="#" role="button">MESSAGE</a>
+                    <a class="btn btn-danger" href="#" role="button">EMAIL</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="@ID" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">@item.Dealer.User.UserName</h4>
+                </div>
+                <div class="modal-body">
+                    <p>@item.Dealer.User.PhoneNumber</p>
+                    @*<p>@item.Dealer.User.Address.Direction</p>*@
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 }
 
-</table>
+

@@ -21,7 +21,7 @@ namespace BusinessLayer.Repositories
 
         public List<Car> GetAllCars()
         {
-            return GetAll().ToList();
+            return GetAll().Include(x => x.Dealer.User).ToList();//
         }
         public Car GetCarById(int id)
         {

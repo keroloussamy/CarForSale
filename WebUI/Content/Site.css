@@ -22,3 +22,113 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/*====================================
+{
+.bod {
+    background-color: rgba(244, 242, 242, 0.925);
+}
+
+.a2 {
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    float: left;
+    margin-top: 1em;
+}
+
+.a2:hover {
+        text-decoration: none;
+        color: black;
+    }
+
+#cal {
+    float: right;
+    width: 5em;
+    background-color: rgb(36, 35, 35);
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    height: 40px;
+}   
+#mess {
+
+    float: right;
+    width: 7em;
+    background-color: rgb(36, 35, 35);
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    height: 40px;
+}
+
+#cal:hover {
+        background-color: rgb(49, 49, 49);
+    }
+
+#ema {
+    float: right;
+    margin-left: 1em;
+    width: 5em;
+    background-color: rgb(196, 41, 41);
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    height: 40px;
+}
+
+#ema:hover {
+        background-color: rgb(196, 67, 67);
+    }
+
+#span {
+    color: rgb(184, 184, 184);
+    font-size: 11px;
+    
+}
+
+.sdiv {
+    border: 1px solid white;
+    background-color: white;
+    font-size: 20px;
+    margin-top: 2em;
+    margin-left: 1em;
+    width: 30em;
+    height: 270px;
+    box-shadow: 0.3px 0.3px 2px 2px #ebe8e8;
+}
+
+#img {
+    float: left;
+    width: 14em;
+    height: 10em;
+}
+
+#Mod {
+    font-size: 20px;
+    margin-left: 1em;
+}
+
+#mil {
+    font-size: 19px;
+    margin-left: 1em;
+}
+
+#Pri {
+    font-size: 23px;
+    margin-left: 1em;
+    color: red;
+}
+
+#car {
+    margin-left: 2em;
+}
+}
+==========================================*/
