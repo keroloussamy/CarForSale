@@ -36,7 +36,10 @@
                 @Html.ActionLink("Details", "Details", new { id = item.Id })
             </td>
         </tr>*@
-    string ID = "myModal" + item.Id;
+
+string IDText = "myModal" + item.Id;
+string IDMessage = item.Dealer.Id;
+string IDEmail = "myModal" + item.Id;
     <div class="row">
         <div class="col-md-9">
             <div class="jumbotron" style="padding: 20px !important;box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
@@ -57,16 +60,16 @@
                 </div>
                 <div style="text-align:right;">
                     <!-- Trigger the modal with a button -->
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#@ID">CALL</button>
-                    <a class="btn btn-primary" href="#" role="button">MESSAGE</a>
-                    <a class="btn btn-danger" href="#" role="button">EMAIL</a>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#@IDText">CALL</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@IDMessage">MESSAGE</button>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#@IDEmail">EMAIL</button>
                 </div>
             </div>
         </div>
     </div>
 
-
-    <div class="modal fade" id="@ID" role="dialog">
+    @*Text Modal*@
+    <div class="modal fade" id="@IDText" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -83,6 +86,17 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
+        </div>
+    </div>
+
+
+
+    @*Message Modal*@
+    <div class="modal fade" id="@IDMessage" role="dialog">
+        <div class="modal-dialog">
+            @{
+                Html.RenderAction("MessagePartial", new { DealerID = IDMessage});
+            }
         </div>
     </div>
 }

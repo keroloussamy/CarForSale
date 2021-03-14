@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.AppService;
+using BusinessLayer.ViewModels;
 using DAL;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,16 @@ namespace WebUI.Controllers
             var cars = carAppService.GetAllCar().Where(c => c.Condition == Condition.Used);
             return View("Index", cars.ToList());
         }
+
+        public PartialViewResult MessagePartial(string DealerID)
+        {
+            //ViewBag.DealerID = DealerID;
+
+            MessageVM messageVM = new MessageVM { DealerId = DealerID }; 
+            return PartialView("_MessagePartial", messageVM);
+        }
+
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

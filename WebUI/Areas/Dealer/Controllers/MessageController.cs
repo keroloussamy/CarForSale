@@ -37,22 +37,21 @@ namespace WebUI.Areas.Dealer.Controllers
 
 
         // GET: Dealer/Message/Create
-        public ActionResult Create()
-        {
-            MessageVM messageVM = new MessageVM();
-            return View(messageVM);
-        }
+        //public ActionResult Create()
+        //{
+        //    MessageVM messageVM = new MessageVM();
+        //    return View(messageVM);
+        //}
 
         // POST: Dealer/Message/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Create(MessageVM messageVM)
         {
             //messageVM.DealerId ==> shold be get from the car
             if (ModelState.IsValid)
             {
                 if (messageAppService.SaveNewMessage(messageVM))
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Home", new { area = ""});
                 else
                 {
                     return View(messageVM);
@@ -124,7 +123,9 @@ namespace WebUI.Areas.Dealer.Controllers
         public JsonResult Delete(int id)
         {
             if (messageAppService.DeleteMessage(id))
+            {
                 return Json(new { status = "Success" });
+            }
             else
             {
                 return Json(new { status = "Faild" });
