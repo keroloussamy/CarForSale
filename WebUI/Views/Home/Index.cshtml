@@ -37,9 +37,9 @@
             </td>
         </tr>*@
 
-string IDText = "myModal" + item.Id;
-string IDMessage = item.Dealer.Id;
-string IDEmail = "myModal" + item.Id;
+    string IDText = "TextModal" + item.Id;
+    string IDMessage = item.Dealer.Id;
+    string IDEmail = "EmailModal" + item.Id;
     <div class="row">
         <div class="col-md-9">
             <div class="jumbotron" style="padding: 20px !important;box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
@@ -95,10 +95,20 @@ string IDEmail = "myModal" + item.Id;
     <div class="modal fade" id="@IDMessage" role="dialog">
         <div class="modal-dialog">
             @{
-                Html.RenderAction("MessagePartial", new { DealerID = IDMessage});
+                Html.RenderAction("MessagePartial", new { DealerID = IDMessage });
             }
         </div>
     </div>
+
+    @*Email Modal*@
+<div class="modal fade" id="@IDEmail" role="dialog">
+    <div class="modal-dialog">
+        @{ 
+                Html.RenderAction("EmailPartial", new { DealerEmail = item.Dealer.User.Email });
+           
+        }
+    </div>
+</div>
 }
 
 

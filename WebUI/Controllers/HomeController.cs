@@ -4,6 +4,8 @@ using DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
@@ -52,6 +54,58 @@ namespace WebUI.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+        
+        public PartialViewResult EmailPartial(string DealerEmail)
+        {
+
+            EmailVM emailVM = new EmailVM { DealerEmail = DealerEmail }; 
+            return PartialView("_EmailPartial", emailVM);
+        }
+
+        [HttpPost]
+        public ActionResult SendEmail(EmailVM emailVM)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var senderEmail = new MailAddress("keroloussamy98@gmail.com", "Cars For Sale");
+                    var receiverEmail = new MailAddress(emailVM.DealerEmail, "Receiver");
+                    var password = "Put Your Password";
+                    var sub = emailVM.Subject;
+                    var body = "Client Name : " + emailVM.Name + "<br>" +
+                                "Client Email : " + emailVM.ClientEmail + "<br>" +
+                                "Client Phone : " + emailVM.Phone + "<br>" +
+                                "Client Message : " + emailVM.Body + "<br>";
+                               
+                    var smtp = new SmtpClient
+                    {
+                        Host = "smtp.gmail.com",
+                        Port = 587,
+                        EnableSsl = true,
+                        DeliveryMethod = SmtpDeliveryMethod.Network,
+                        UseDefaultCredentials = false,
+                        Credentials = new NetworkCredential(senderEmail.Address, password)
+                    };
+                    using (var mess = new MailMessage(senderEmail, receiverEmail)
+                    {
+                        Subject = sub,
+                        Body = body
+                    })
+                    {
+                        mess.IsBodyHtml = true;
+                        smtp.Send(mess);
+                    }
+                    return RedirectToAction("Index");
+
+                }
+            }
+            catch (Exception)
+            {
+                ViewBag.Error = "Some Error";
+            }
+            return RedirectToAction("Contact");
         }
     }
 }

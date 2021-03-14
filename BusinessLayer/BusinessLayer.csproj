@@ -76,6 +76,7 @@
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="ViewModels\BrandVM.cs" />
     <Compile Include="ViewModels\CarVM.cs" />
+    <Compile Include="ViewModels\EmailVM.cs" />
     <Compile Include="ViewModels\LoginVM.cs" />
     <Compile Include="ViewModels\MessageVM.cs" />
     <Compile Include="ViewModels\RegisterVM.cs" />
