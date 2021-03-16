@@ -3,18 +3,18 @@
 {
     <ul class="nav navbar-nav navbar-right">
         <li>@* here dealer profile *@
-            @Html.ActionLink("Hello " + User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            @Html.ActionLink("Hello " + User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
         </li>
         <li>@Html.ActionLink("Log Out", "Logout", "Account")</li>
     </ul>
 }
 else
 {
-<ul class="nav navbar-nav navbar-right">
+@*<ul class="nav navbar-nav navbar-right">*@
 
-    <li>@Html.ActionLink("Become A Dealer", "Register", "Account", new { area = "Accounts" }, new { })</li>@*@class ="glyphicon glyphicon-user"  @class = "glyphicon glyphicon-log-in" *@
-    <li>@Html.ActionLink("Log In", "Login", "Account", new { area = "Accounts" }, new { })</li>
+    <li>@Html.ActionLink("Become A Dealer", "Register", "Account", new { area = "Accounts" }, new { @class = "nav-link" })</li>@*@class ="glyphicon glyphicon-user"  @class = "glyphicon glyphicon-log-in" *@
+    <li>@Html.ActionLink("Log In", "Login", "Account", new { area = "Accounts" }, new { @class = "nav-link" })</li>
 
-</ul>
+@*</ul>*@
 }
 
