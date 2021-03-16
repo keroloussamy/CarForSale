@@ -80,6 +80,7 @@
     <Compile Include="ViewModels\LoginVM.cs" />
     <Compile Include="ViewModels\MessageVM.cs" />
     <Compile Include="ViewModels\RegisterVM.cs" />
+    <Compile Include="ViewModels\SearchCarVM.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -20,6 +20,10 @@ namespace WebUI.Areas.Admin
             return View(brandAppService.GetBrands());
         }
 
+        public JsonResult GetBrands()
+        {
+            return Json(brandAppService.GetBrands(), JsonRequestBehavior.AllowGet);
+        }
 
         public ActionResult Details(int id)
         {

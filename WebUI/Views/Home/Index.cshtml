@@ -56,7 +56,7 @@
         </a>
     </div>
 
-
+    @Html.Partial("_AdvSearchPartial")
     <!-- Marketing messaging and featurettes
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
@@ -134,4 +134,63 @@
 @section head{
 
     <link href="~/Content/carousel.css" rel="stylesheet" />
+}
+@section scripts{
+    <script>
+        $(function () {
+
+            AjaxCall('/Admin/Brand/GetBrands', null).done(function (response) {
+                if (response.length > 0) {
+                    $('#BrandId').html('');
+                    var options = '';
+                    options += '<option value="null">Brands</option>';
+                    for (var i = 0; i < response.length; i++) {
+                        options += '<option value="' + response[i].Id + '">' + response[i].Name + '</option>';
+                    }
+                    $('#BrandId').append(options);
+
+                }
+            }).fail(function (error) {
+                alert(error.StatusText);
+            });
+
+            $('#BrandId').on("change", function () {
+                var BrandId = $('#BrandId').val();
+                if (BrandId == "null") {
+                    $('#Model').html('');
+                    var options = '<option value="null">Modles</option>';
+                    $('#Model').append(options);
+                    return;
+                }
+                var obj = { BrandId: BrandId };
+                AjaxCall('/Dealer/Car/CarsForBrand', JSON.stringify(obj), 'POST').done(function (response) {
+                    if (response.length > 0) {
+                        $('#Model').html('');
+                        var options = '';
+                        options += '<option value="null">Modles</option>';
+                        for (var i = 0; i < response.length; i++) {
+                            options += '<option value="' + response[i] + '">' + response[i] + '</option>';
+                        }
+                        $('#Model').append(options);
+
+                    }
+                }).fail(function (error) {
+                    alert(error.StatusText);
+                });
+            });
+
+        });
+
+        function AjaxCall(url, data, type) {
+            $('#Model').html('');
+            var options = '<option value="null">Modles</option>';
+            $('#Model').append(options);
+            return $.ajax({
+                url: url,
+                type: type ? type : 'GET',
+                data: data,
+                contentType: 'application/json'
+            });
+        }
+    </script>
 }

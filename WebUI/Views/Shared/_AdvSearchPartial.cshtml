@@ -1,0 +1,87 @@
+﻿@model BusinessLayer.ViewModels.SearchCarVM
+
+@using (Html.BeginForm("AdvSearch", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>SearchCarVM</h4>
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.MinPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select class="form-control" id="MinPrice" name="MinPrice">
+                    <option value="null">Min Price</option>
+                    <option>1000</option>
+                    <option>5000</option>
+                    <option>10000</option>
+                    <option>20000</option>
+                    <option>30000</option>
+                    <option>50000</option>
+                    <option>80000</option>
+                    <option>100000</option>
+                    <option>120000</option>
+                </select>
+                @Html.ValidationMessageFor(model => model.MinPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaxPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select class="form-control" id="MaxPrice" name="MaxPrice">
+                    <option value="null">Max Price</option>
+                    <option>5000</option>
+                    <option>10000</option>
+                    <option>20000</option>
+                    <option>30000</option>
+                    <option>50000</option>
+                    <option>80000</option>
+                    <option>100000</option>
+                    <option>120000</option>
+                    <option>150000</option>
+                </select>
+                @Html.ValidationMessageFor(model => model.MaxPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BrandId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select class="form-control" id="BrandId" name="BrandId">
+                    <option value="null">Brands</option>
+                </select>
+                @Html.ValidationMessageFor(model => model.BrandId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Model, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select class="form-control" id="Model" name="Model">
+                    <option value="null">Models</option>
+                </select>
+                @Html.ValidationMessageFor(model => model.Model, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Color, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EnumDropDownListFor(model => model.Color, new { @class = "form-control" })*@
+                @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Search" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+

@@ -18,6 +18,30 @@ namespace WebUI.Controllers
         {
             return View();
         }
+        
+
+        [HttpPost]
+        public ActionResult AdvSearch(SearchCarVM searchCarVM)
+        {
+            var result = carAppService.GetAllCar();
+            if (searchCarVM != null)
+            {
+                if (searchCarVM.Condition != null)
+                    result = result.Where(x => x.Condition == searchCarVM.Condition).ToList();  
+                if (!string.IsNullOrEmpty(searchCarVM.Color))
+                    result = result.Where(x => x.Color.Contains(searchCarVM.Color)).ToList();
+                if (searchCarVM.MinPrice.HasValue)
+                    result = result.Where(x => x.Price >= searchCarVM.MinPrice).ToList();
+                if (searchCarVM.MaxPrice.HasValue)
+                    result = result.Where(x => x.Price <= searchCarVM.MaxPrice).ToList();
+                if (!string.IsNullOrEmpty(searchCarVM.Model))
+                    result = result.Where(x => x.Model.Contains(searchCarVM.Model)).ToList();
+                if (searchCarVM.BrandId != null)
+                    result = result.Where(x => x.BrandId == searchCarVM.BrandId).ToList();
+            }
+            
+            return View("Cars", result);
+        }
 
         public ActionResult Cars()
         {

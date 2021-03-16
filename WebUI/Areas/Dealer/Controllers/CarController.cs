@@ -21,7 +21,11 @@ namespace WebUI.Areas.Dealer.Controllers
             return View(carAppService.GetAllCar().Where(c => c.DealerId == User.Identity.GetUserId()));
         }
 
-
+        [HttpPost]
+        public JsonResult CarsForBrand(int BrandId)
+        {
+            return Json(carAppService.GetAllCar().Where(c => c.BrandId == BrandId).Select(c => c.Model).ToList(), JsonRequestBehavior.AllowGet);
+        }
 
         // GET: Dealer/Car/Details/5
         public ActionResult Details(int id)
@@ -40,7 +44,7 @@ namespace WebUI.Areas.Dealer.Controllers
         // GET: Dealer/Car/Create
         public ActionResult Create()
         {
-            //ViewBag.BrandId = new SelectList(unitOfWork.Brands, "ID", "Name");
+            ViewBag.BrandId = new SelectList(unitOfWork.Brand.GetAll(), "ID", "Name");
             CarVM carVM = new CarVM();
             return View(carVM);
         }
@@ -63,19 +67,19 @@ namespace WebUI.Areas.Dealer.Controllers
                         return RedirectToAction("Index");
                     else
                     {
-                        //ViewBag.BrandId = new SelectList(unitOfWork.Brands, "ID", "Name", carVM.BrandId);
+                        ViewBag.BrandId = new SelectList(unitOfWork.Brand.GetAll(), "ID", "Name", carVM.BrandId);
                         return View(carVM);
                     }
                 }
                 else
                 {
-                    //ViewBag.BrandId = new SelectList(unitOfWork.Brands, "ID", "Name", carVM.BrandId);
+                    ViewBag.BrandId = new SelectList(unitOfWork.Brand.GetAll(), "ID", "Name", carVM.BrandId);
                     return View(carVM);
                 }
             }
             catch (Exception)
             {
-                //ViewBag.BrandId = new SelectList(unitOfWork.Brands, "ID", "Name", carVM.BrandId);
+                ViewBag.BrandId = new SelectList(unitOfWork.Brand.GetAll(), "ID", "Name", carVM.BrandId);
                 return View(carVM);
             }
         }

@@ -57,6 +57,14 @@ namespace DAL
 
 
     /*=========================== Models ========================*/
+    public enum Color
+    {
+        Pink,
+        Red, 
+        Maroon,  
+        Brown,   Misty, Rose,  Salmon,  Coral,   OrangeRed,  Chocolate,   Orange,  Gold,    Ivory,   Yellow,  Olive,   YellowGreen,    LawnGreen,  Chartreuse,
+        Lime,    Green,   SpringGreen,    Aquamarine
+    } 
     public enum Condition
     {
         New,
