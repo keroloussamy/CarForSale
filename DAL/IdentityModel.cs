@@ -14,8 +14,6 @@ namespace DAL
     public class ApplicationUserIdentity : IdentityUser
     {
         public virtual Address Address { get; set; }
-        int x;
-        //yyyyyyyyyyyy
     }
 
     public class ApplicationUserStore : UserStore<ApplicationUserIdentity>
