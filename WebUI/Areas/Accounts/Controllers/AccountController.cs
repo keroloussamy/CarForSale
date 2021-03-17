@@ -15,6 +15,7 @@ namespace WebUI.Areas.Accounts
     public class AccountController : Controller
     {
         AccountAppService accountAppService = new AccountAppService();
+        DealerAppService dealerAppService = new DealerAppService();
         // GET: Account
         public ActionResult Register() => View();
 
@@ -39,7 +40,9 @@ namespace WebUI.Areas.Accounts
                 ApplicationUserIdentity identityUser = accountAppService.Find(user.UserName, user.PasswordHash);
                 
                 accountAppService.AssignToRole(identityUser.Id, "Dealer");  //-------------
-                
+
+                dealerAppService.SaveNewDealer(new DAL.Dealer { Id = identityUser.Id });   //To add UserId to Dealer table, like make the relatin manwal 
+
                 signinmanager.SignIn(identityUser, true, true);
                 return RedirectToAction("Index", "Home");//Dealer area 
             }

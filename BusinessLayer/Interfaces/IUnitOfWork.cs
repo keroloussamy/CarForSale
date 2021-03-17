@@ -13,6 +13,7 @@ namespace BusinessLayer.Interfaces
         int Commit();
         #endregion
 
+        DealerRepository Dealer { get; }
         BrandRepository Brand { get; }
         MessageRepository Message { get; }
         CarRepository Car { get; }

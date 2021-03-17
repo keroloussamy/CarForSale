@@ -24,22 +24,6 @@ namespace BusinessLayer.Repositories
             return GetAll().Include(x => x.Dealer.User).Include(x => x.Dealer).Include(x =>x.Dealer.User.Address).ToList();//
         }
 
-        //public List<Car> AdvSearch(Car car)
-        //{
-        //    var result = GetAll();
-        //    if (car != null)
-        //    {
-        //        if (car.Condition != null)
-        //            result = result.Where(x => x.Id == car.Id);
-        //        if (!string.IsNullOrEmpty(car.Name))
-        //            result = result.Where(x => x.Name.Contains(car.Name));
-        //        if (car.PriceFrom.HasValue)
-        //            result = result.Where(x => x.Price >= car.PriceFrom);
-        //        if (car.PriceTo.HasValue)
-        //            result = result.Where(x => x.Price <= car.PriceTo);
-        //    }
-        //    return result;
-        //}
 
         public Car GetCarById(int id)
         {

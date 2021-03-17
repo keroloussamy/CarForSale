@@ -50,6 +50,20 @@ namespace BusinessLayer.Bases
             }
         }
 
+
+
+        public DealerRepository dealer;//=> throw new NotImplementedException();
+        public DealerRepository Dealer
+        {
+            get
+            {
+                if (dealer == null)
+                    dealer = new DealerRepository(EC_DbContext);
+                return dealer;
+            }
+        }
+
+
         public AccountRepository account;//=> throw new NotImplementedException();
         public AccountRepository Account
         {
@@ -93,5 +107,7 @@ namespace BusinessLayer.Bases
                 return brand;
             }
         }
+
+        //BrandRepository IUnitOfWork.Dealer => throw new NotImplementedException();
     }
 }

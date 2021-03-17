@@ -60,6 +60,7 @@
     <Compile Include="AppService\AccountAppService.cs" />
     <Compile Include="AppService\BrandAppService.cs" />
     <Compile Include="AppService\CarAppService.cs" />
+    <Compile Include="AppService\DealerAppService.cs" />
     <Compile Include="AppService\MessageAppService.cs" />
     <Compile Include="AppService\RoleAppService.cs" />
     <Compile Include="Bases\AppServiceBase.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\BrandRepository.cs" />
     <Compile Include="Repositories\CarRepository.cs" />
+    <Compile Include="Repositories\DealerRepository.cs" />
     <Compile Include="Repositories\MessageRepository.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="ViewModels\BrandVM.cs" />
