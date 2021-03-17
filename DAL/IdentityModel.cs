@@ -14,6 +14,7 @@ namespace DAL
     public class ApplicationUserIdentity : IdentityUser
     {
         public virtual Address Address { get; set; }
+        //asdbasbhdvsa
     }
 
     public class ApplicationUserStore : UserStore<ApplicationUserIdentity>
