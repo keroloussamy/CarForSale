@@ -72,7 +72,7 @@ namespace WebUI.Areas.Accounts
                         new ApplicationUserManager(), owinMAnager
                         );
                 signinmanager.SignIn(identityUser, true, true);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home"); //Dealer home
             }
             else
             {

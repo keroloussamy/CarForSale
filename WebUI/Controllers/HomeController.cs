@@ -28,7 +28,7 @@ namespace WebUI.Controllers
             {
                 if (searchCarVM.Condition != null)
                     result = result.Where(x => x.Condition == searchCarVM.Condition).ToList();
-                if (searchCarVM.Color != null)
+                if (searchCarVM.Color != 0)
                     result = result.Where(x => x.Color == searchCarVM.Color).ToList();
                 if (searchCarVM.MinPrice.HasValue)
                     result = result.Where(x => x.Price >= searchCarVM.MinPrice).ToList();
@@ -39,7 +39,10 @@ namespace WebUI.Controllers
                 if (searchCarVM.BrandId != null)
                     result = result.Where(x => x.BrandId == searchCarVM.BrandId).ToList();
             }
-            
+            if (result == null) //Need To review
+            {
+                ViewBag.Message = "No Matches Result";
+            }
             return View("Cars", result);
         }
 
