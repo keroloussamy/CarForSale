@@ -98,7 +98,7 @@ namespace WebUI.Areas.Dealer.Controllers
             {
                 return HttpNotFound();
             }
-            //ViewBag.BrandId = new SelectList(unitOfWork.Brands, "ID", "Name", carVM.BrandId);
+            ViewBag.BrandId = new SelectList(unitOfWork.Brand.GetAll(), "ID", "Name");
             return View(car);
         }
 
@@ -120,19 +120,19 @@ namespace WebUI.Areas.Dealer.Controllers
                         return RedirectToAction("Index");
                     else
                     {
-                        //ViewBag.BrandId = new SelectList(unitOfWork.Brands, "ID", "Name", carVM.BrandId);
+                        ViewBag.BrandId = new SelectList(unitOfWork.Brand.GetAll(), "ID", "Name", carVM.BrandId);
                         return View(carVM);
                     }
                 }
                 else
                 {
-                    //ViewBag.BrandId = new SelectList(unitOfWork.Brands, "ID", "Name", carVM.BrandId);
+                    ViewBag.BrandId = new SelectList(unitOfWork.Brand.GetAll(), "ID", "Name", carVM.BrandId);
                     return View(carVM);
                 }
             }
             catch (Exception)
             {
-                //ViewBag.BrandId = new SelectList(unitOfWork.Brands, "ID", "Name", carVM.BrandId);
+                ViewBag.BrandId = new SelectList(unitOfWork.Brand.GetAll(), "ID", "Name", carVM.BrandId);
                 return View(carVM);
             }
 

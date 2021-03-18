@@ -27,14 +27,14 @@ namespace WebUI.Controllers
             if (searchCarVM != null)
             {
                 if (searchCarVM.Condition != null)
-                    result = result.Where(x => x.Condition == searchCarVM.Condition).ToList();  
-                if (!string.IsNullOrEmpty(searchCarVM.Color))
-                    result = result.Where(x => x.Color.Contains(searchCarVM.Color)).ToList();
+                    result = result.Where(x => x.Condition == searchCarVM.Condition).ToList();
+                if (searchCarVM.Color != null)
+                    result = result.Where(x => x.Color == searchCarVM.Color).ToList();
                 if (searchCarVM.MinPrice.HasValue)
                     result = result.Where(x => x.Price >= searchCarVM.MinPrice).ToList();
                 if (searchCarVM.MaxPrice.HasValue)
                     result = result.Where(x => x.Price <= searchCarVM.MaxPrice).ToList();
-                if (!string.IsNullOrEmpty(searchCarVM.Model))
+                if (searchCarVM.Model != "null")//(!string.IsNullOrEmpty(searchCarVM.Model)) 
                     result = result.Where(x => x.Model.Contains(searchCarVM.Model)).ToList();
                 if (searchCarVM.BrandId != null)
                     result = result.Where(x => x.BrandId == searchCarVM.BrandId).ToList();

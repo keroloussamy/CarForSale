@@ -14,7 +14,7 @@ namespace BusinessLayer.ViewModels
         public int? MaxPrice { get; set; }
         public int? MinPrice { get; set; }
         public string Model { get; set; }
-        public string Color { get; set; }
+        public Color Color { get; set; }
 
     }
 }

@@ -14,7 +14,6 @@ namespace DAL
     public class ApplicationUserIdentity : IdentityUser
     {
         public virtual Address Address { get; set; }
-        //asdbasbhdvsa
     }
 
     public class ApplicationUserStore : UserStore<ApplicationUserIdentity>
@@ -60,31 +59,35 @@ namespace DAL
     /*=========================== Models ========================*/
     public enum Color
     {
-        Pink,
-        Red, 
-        Maroon,  
-        Brown,   Misty, Rose,  Salmon,  Coral,   OrangeRed,  Chocolate,   Orange,  Gold,    Ivory,   Yellow,  Olive,   YellowGreen,    LawnGreen,  Chartreuse,
-        Lime,    Green,   SpringGreen,    Aquamarine
-    } 
+        Pink, Red, Maroon, Brown, Misty, Rose, Salmon, Coral, OrangeRed, Chocolate, Orange, Gold, Ivory, Yellow, Olive, YellowGreen, LawnGreen, Chartreuse,
+        Lime, Green, SpringGreen, Aquamarine
+    }
     public enum Condition
     {
         New,
         Used
     }
-    public class Car 
+    public class Car
     {
         public int Id { get; set; }
 
         [Required]
         public string Model { get; set; }
-        public double Mileage { get; set; }
-        public double Price { get; set; }
+        public int Mileage { get; set; }
+        public int Price { get; set; }
+        [Required]
         public string Engine { get; set; }
-        public string Color { get; set; }
+        [Required]
+        public Color Color { get; set; }
+        [Required]
         public Condition Condition { get; set; }
+        [Required]
         public string Image { get; set; }
 
+        public int Year { get; set; }
+
         [ForeignKey("Dealer")]
+        [Required]
         public string DealerId { get; set; }
         public virtual Dealer Dealer { get; set; }
 
@@ -109,10 +112,11 @@ namespace DAL
         public string Id { get; set; }
 
         public virtual ApplicationUserIdentity User { get; set; }
-        
+
         public virtual ICollection<Message> Massages { get; set; }
         public virtual ICollection<Car> Cars { get; set; }
-        
+        public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<Appointment> Appointments { get; set; }
     }
     public enum City
     {
@@ -170,17 +174,55 @@ namespace DAL
         public string LastName { get; set; }
 
         [DataType(DataType.EmailAddress)]
+        [Required]
         public string Email { get; set; }
 
         [Required]
         public string Phone { get; set; }
 
         [ForeignKey("Dealer")]
+        [Required]
         public string DealerId { get; set; }
         public virtual Dealer Dealer { get; set; }
 
     }
 
+    public class Appointment
+    {
+        public int Id { get; set; }
+
+        [Required]
+        public DateTime Date { get; set; }
+        [Required]
+        public string CustomerName { get; set; }
+        [Required]
+        public string CustomerPhoneNumber { get; set; }
+        [Required]
+        public string CustomerEmail { get; set; }
+
+        [ForeignKey("Dealer")]
+        [Required]
+        public string DealerId { get; set; }
+        public virtual Dealer Dealer { get; set; }
+
+        [ForeignKey("Employee")]
+        public string EmployeeId { get; set; }
+        public virtual Employee Employee { get; set; }
+
+    }
+    public class Employee
+    {
+        [Key, ForeignKey("User")]
+        public string Id { get; set; }
+
+        public virtual ApplicationUserIdentity User { get; set; }
+        public virtual ICollection<Appointment> Appointments { get; set; }
+
+        [ForeignKey("Dealer")]
+        [Required]
+        public string DealerId { get; set; }
+        public virtual Dealer Dealer { get; set; }
+    }
 
     /*=========================== End of Models ========================*/
 

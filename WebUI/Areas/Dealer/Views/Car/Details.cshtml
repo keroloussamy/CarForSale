@@ -59,11 +59,35 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BrandId)
+            @Html.DisplayNameFor(model => model.Condition)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BrandId)
+            @Html.DisplayFor(model => model.Condition)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dealer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dealer.User.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Brand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Brand.Name)
         </dd>
 
     </dl>

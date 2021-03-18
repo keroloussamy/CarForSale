@@ -143,7 +143,7 @@
                 if (response.length > 0) {
                     $('#BrandId').html('');
                     var options = '';
-                    options += '<option value="null">Brands</option>';
+                    options += '<option value='+null+'>Brands</option>';
                     for (var i = 0; i < response.length; i++) {
                         options += '<option value="' + response[i].Id + '">' + response[i].Name + '</option>';
                     }
@@ -158,7 +158,7 @@
                 var BrandId = $('#BrandId').val();
                 if (BrandId == "null") {
                     $('#Model').html('');
-                    var options = '<option value="null">Modles</option>';
+                    var options = '<option value=' + null +'>Modles</option>';
                     $('#Model').append(options);
                     return;
                 }
@@ -167,7 +167,7 @@
                     if (response.length > 0) {
                         $('#Model').html('');
                         var options = '';
-                        options += '<option value="null">Modles</option>';
+                        options += '<option value=' + null +'>Modles</option>';
                         for (var i = 0; i < response.length; i++) {
                             options += '<option value="' + response[i] + '">' + response[i] + '</option>';
                         }
@@ -183,7 +183,7 @@
 
         function AjaxCall(url, data, type) {
             $('#Model').html('');
-            var options = '<option value="null">Modles</option>';
+            var options = '<option value=' + null +'>Modles</option>';
             $('#Model').append(options);
             return $.ajax({
                 url: url,

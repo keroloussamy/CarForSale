@@ -93,18 +93,19 @@ namespace DAL.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Model = c.String(nullable: false),
-                        Mileage = c.Double(nullable: false),
-                        Price = c.Double(nullable: false),
-                        Engine = c.String(),
-                        Color = c.String(),
+                        Mileage = c.Int(nullable: false),
+                        Price = c.Int(nullable: false),
+                        Engine = c.String(nullable: false),
+                        Color = c.Int(nullable: false),
                         Condition = c.Int(nullable: false),
-                        Image = c.String(),
-                        DealerId = c.String(maxLength: 128),
+                        Image = c.String(nullable: false),
+                        Year = c.Int(nullable: false),
+                        DealerId = c.String(nullable: false, maxLength: 128),
                         BrandId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Brands", t => t.BrandId, cascadeDelete: true)
-                .ForeignKey("dbo.Dealers", t => t.DealerId)
+                .ForeignKey("dbo.Dealers", t => t.DealerId, cascadeDelete: true)
                 .Index(t => t.DealerId)
                 .Index(t => t.BrandId);
             
@@ -119,6 +120,37 @@ namespace DAL.Migrations
                 .Index(t => t.Id);
             
             CreateTable(
+                "dbo.Appointments",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Date = c.DateTime(nullable: false),
+                        CustomerName = c.String(nullable: false),
+                        CustomerPhoneNumber = c.String(nullable: false),
+                        CustomerEmail = c.String(nullable: false),
+                        DealerId = c.String(nullable: false, maxLength: 128),
+                        EmployeeId = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Dealers", t => t.DealerId, cascadeDelete: true)
+                .ForeignKey("dbo.Employees", t => t.EmployeeId)
+                .Index(t => t.DealerId)
+                .Index(t => t.EmployeeId);
+            
+            CreateTable(
+                "dbo.Employees",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        DealerId = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Dealers", t => t.DealerId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetUsers", t => t.Id)
+                .Index(t => t.Id)
+                .Index(t => t.DealerId);
+            
+            CreateTable(
                 "dbo.Messages",
                 c => new
                     {
@@ -126,12 +158,12 @@ namespace DAL.Migrations
                         body = c.String(nullable: false),
                         FirstName = c.String(nullable: false),
                         LastName = c.String(nullable: false),
-                        Email = c.String(),
+                        Email = c.String(nullable: false),
                         Phone = c.String(nullable: false),
-                        DealerId = c.String(maxLength: 128),
+                        DealerId = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Dealers", t => t.DealerId)
+                .ForeignKey("dbo.Dealers", t => t.DealerId, cascadeDelete: true)
                 .Index(t => t.DealerId);
             
             CreateTable(
@@ -152,6 +184,10 @@ namespace DAL.Migrations
             DropForeignKey("dbo.Cars", "DealerId", "dbo.Dealers");
             DropForeignKey("dbo.Dealers", "Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.Messages", "DealerId", "dbo.Dealers");
+            DropForeignKey("dbo.Appointments", "EmployeeId", "dbo.Employees");
+            DropForeignKey("dbo.Employees", "Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Employees", "DealerId", "dbo.Dealers");
+            DropForeignKey("dbo.Appointments", "DealerId", "dbo.Dealers");
             DropForeignKey("dbo.Cars", "BrandId", "dbo.Brands");
             DropForeignKey("dbo.Addresses", "Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
@@ -159,6 +195,10 @@ namespace DAL.Migrations
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.Messages", new[] { "DealerId" });
+            DropIndex("dbo.Employees", new[] { "DealerId" });
+            DropIndex("dbo.Employees", new[] { "Id" });
+            DropIndex("dbo.Appointments", new[] { "EmployeeId" });
+            DropIndex("dbo.Appointments", new[] { "DealerId" });
             DropIndex("dbo.Dealers", new[] { "Id" });
             DropIndex("dbo.Cars", new[] { "BrandId" });
             DropIndex("dbo.Cars", new[] { "DealerId" });
@@ -170,6 +210,8 @@ namespace DAL.Migrations
             DropIndex("dbo.Addresses", new[] { "Id" });
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.Messages");
+            DropTable("dbo.Employees");
+            DropTable("dbo.Appointments");
             DropTable("dbo.Dealers");
             DropTable("dbo.Cars");
             DropTable("dbo.Brands");

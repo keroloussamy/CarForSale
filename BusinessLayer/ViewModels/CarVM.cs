@@ -10,20 +10,21 @@ namespace BusinessLayer.ViewModels
 
         [Required]
         public string Model { get; set; }
-        [Required]
-        public double Mileage { get; set; }
-        [Required]
-        public double Price { get; set; }
+        public int Mileage { get; set; }
+        public int Price { get; set; }
         [Required]
         public string Engine { get; set; }
         [Required]
-        public string Color { get; set; }
+        public Color Color { get; set; }
         [Required]
         public Condition Condition { get; set; }
         [Required]
         public string Image { get; set; }
 
+        public int Year { get; set; }
+
         [ForeignKey("Dealer")]
+        [Required]
         public string DealerId { get; set; }
         public virtual Dealer Dealer { get; set; }
 
