@@ -71,7 +71,9 @@
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
     </div>
 </div>
+
 @section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
     <script>
         $('#myForm').submit(function (e) {
             e.preventDefault();
@@ -79,7 +81,7 @@
                 '/Dealer/Message/Create',
                 {
                 type: 'POST',  // http method
-                data: { messageVM: @Model },  // data to submit
+                    data: { appointment: @Model },  // data to submit
 
                 success: function (data, status, xhr) {
                 },

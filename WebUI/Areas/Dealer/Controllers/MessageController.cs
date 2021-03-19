@@ -47,7 +47,6 @@ namespace WebUI.Areas.Dealer.Controllers
         [HttpPost]
         public ActionResult Create(MessageVM messageVM)
         {
-            //messageVM.DealerId ==> shold be get from the car
             if (ModelState.IsValid)
             {
                 if (messageAppService.SaveNewMessage(messageVM))

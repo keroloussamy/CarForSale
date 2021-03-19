@@ -241,6 +241,7 @@
     <Compile Include="Areas\Admin\Controllers\BrandsController.cs" />
     <Compile Include="Areas\Admin\Controllers\DealersController.cs" />
     <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
+    <Compile Include="Areas\Dealer\Controllers\AppointmentController.cs" />
     <Compile Include="Areas\Dealer\Controllers\CarController.cs" />
     <Compile Include="Areas\Dealer\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Dealer\Controllers\MessageController.cs" />
@@ -312,6 +313,9 @@
     <Content Include="Areas\Admin\Views\Dealers\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Dealers\Index.cshtml" />
     <Content Include="Areas\Dealer\Views\Employee\Edit.cshtml" />
+    <Content Include="Areas\Dealer\Views\Appointment\Index.cshtml" />
+    <Content Include="Areas\Dealer\Views\Appointment\Details.cshtml" />
+    <Content Include="Areas\Dealer\Views\Appointment\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -425,6 +429,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_AdvSearchPartial.cshtml" />
+    <Content Include="Views\Shared\_AppointmentPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

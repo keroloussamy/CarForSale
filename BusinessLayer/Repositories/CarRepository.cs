@@ -27,7 +27,7 @@ namespace BusinessLayer.Repositories
 
         public Car GetCarById(int id)
         {
-            return GetFirstOrDefault(l => l.Id == id);//include(x => x.Brand)
+            return GetWhere(l => l.Id == id).Include(d => d.Brand).FirstOrDefault();
         }
 
         public bool InsertCar(Car car)

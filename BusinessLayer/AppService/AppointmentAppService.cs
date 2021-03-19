@@ -15,6 +15,11 @@ namespace BusinessLayer.AppService
 
             return TheUnitOfWork.Appointment.GetAllAppointments();
         }
+        public List<Appointment> GetAllAppointmentWhere(string dealerId)
+        {
+
+            return TheUnitOfWork.Appointment.GetAllWhere(x => x.DealerId == dealerId);
+        }
         public Appointment GetAppointment(int id)
         {
             return TheUnitOfWork.Appointment.GetAppointmentById(id);

@@ -131,7 +131,7 @@ namespace WebUI.Areas.Accounts
         {
             IAuthenticationManager owinMAnager = HttpContext.GetOwinContext().Authentication;
             owinMAnager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index","Home", new { area = ""});
         }
 
     }

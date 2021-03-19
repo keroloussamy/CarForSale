@@ -71,7 +71,12 @@ namespace WebUI.Controllers
             return PartialView("_MessagePartial", messageVM);
         }
 
-        
+        public PartialViewResult AppointmentPartial(string DealerID)
+        {
+            Appointment appointment = new Appointment { DealerId = DealerID };
+            return PartialView("_AppointmentPartial", appointment);
+        }
+
         public PartialViewResult EmailPartial(string DealerEmail)
         {
 

@@ -44,6 +44,7 @@
         string IDMessage = "MessageModal" + item.Id;
         string DealerID = item.DealerId;
         string IDEmail = "EmailModal" + item.Id;
+        string IDAppointment = "AppointmentModal" + item.Id;
 
         //Car Card
 
@@ -68,6 +69,7 @@
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#@IDText">CALL</button>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@IDMessage">MESSAGE</button>
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#@IDEmail">EMAIL</button>
+                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#@IDAppointment">Appointment</button>
                 </div>
             </div>
         </div>
@@ -120,6 +122,15 @@
             </div>
         </div>
 
+
+        //Appointment Modal
+        <div class="modal fade" id="@IDAppointment">
+            <div class="modal-dialog">
+                @{
+                    Html.RenderAction("AppointmentPartial", new { DealerID = DealerID });
+                }
+            </div>
+        </div>
     }
 </div>
 @* Add style to this page *@
