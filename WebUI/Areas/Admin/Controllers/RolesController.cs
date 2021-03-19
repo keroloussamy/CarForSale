@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace WebUI.Areas.Admin.Controllers
 {
-    public class RoleController : Controller
+    public class RolesController : Controller
     {
         // GET: Admin/Role
         RoleAppService roleAppService = new RoleAppService();
@@ -25,7 +25,7 @@ namespace WebUI.Areas.Admin.Controllers
                 IdentityResult result = roleAppService.Create(RoleName);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index","Dealers");
                 }
                 ViewBag.Error2 = result.Errors;
             }

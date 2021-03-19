@@ -41,15 +41,15 @@ namespace BusinessLayer.AppService
         }
 
 
-        //public bool DeleteDealer(int id)
-        //{
-        //    bool result = false;
+        public bool DeleteDealer(string id)
+        {
+            bool result = false;
 
-        //    TheUnitOfWork.Dealer.Delete(id);
-        //    result = TheUnitOfWork.Commit() > new int();
+            TheUnitOfWork.Dealer.Delete(id);
+            result = TheUnitOfWork.Commit() > new int();
 
-        //    return result;
-        //}
+            return result;
+        }
 
         public bool CheckDealerExists(Dealer dealer)
         {

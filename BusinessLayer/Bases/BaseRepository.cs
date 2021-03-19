@@ -82,6 +82,11 @@ namespace BusinessLayer.Bases
             return DbSet.Find(id);
         }
 
+        public virtual T GetById(string id)
+        {
+            return DbSet.Find(id);
+        }
+
         public virtual T GetById(long id)
         {
             return DbSet.Find(id);
@@ -151,6 +156,12 @@ namespace BusinessLayer.Bases
         }
 
         public virtual void Delete(int id)
+        {
+            var entity = GetById(id);
+            if (entity == null) return; // not found; assume already deleted.
+            Delete(entity);
+        }
+        public virtual void Delete(string id)
         {
             var entity = GetById(id);
             if (entity == null) return; // not found; assume already deleted.

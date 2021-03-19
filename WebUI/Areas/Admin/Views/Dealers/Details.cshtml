@@ -1,0 +1,48 @@
+﻿@model DAL.Dealer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Dealer Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.UserName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Address.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.Address.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.Address.Direction)
+        </dt>
+
+        <dd>
+            <a href="@Model.User.Address.Direction">Direction</a> 
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

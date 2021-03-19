@@ -108,6 +108,25 @@ namespace BusinessLayer.Bases
             }
         }
 
-        //BrandRepository IUnitOfWork.Dealer => throw new NotImplementedException();
+        public AppointmentRepository appointment;
+        public AppointmentRepository Appointment
+        {
+            get
+            {
+                if (appointment == null)
+                    appointment = new AppointmentRepository(EC_DbContext);
+                return appointment;
+            }
+        }
+        public EmployeeRepository employee;
+        public EmployeeRepository Employee
+        {
+            get
+            {
+                if (employee == null)
+                    employee = new EmployeeRepository(EC_DbContext);
+                return employee;
+            }
+        }
     }
 }

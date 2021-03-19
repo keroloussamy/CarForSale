@@ -21,14 +21,14 @@ namespace BusinessLayer.Repositories
 
         public List<Dealer> GetAllDealers()
         {
-            return GetAll().Include(d => d.User).ToList();
+            return GetAll().Include(d => d.User).Include(d => d.User.Address).ToList();
         }
 
 
 
         public Dealer GetDealerById(string id)
         {
-            return GetFirstOrDefault(l => l.Id == id);
+            return GetWhere(l => l.Id == id).Include(d => d.User.Address).FirstOrDefault();
         }
 
         public bool InsertDealer(Dealer dealer)
@@ -41,10 +41,10 @@ namespace BusinessLayer.Repositories
             Update(dealer);
         }
 
-        //public void DeleteDealer(int id)     //id should be string here
-        //{
-        //    Delete(id);
-        //}
+        public void DeleteDealer(string id)     //id should be string here for user identity
+        {
+            Delete(id);
+        }
 
         public bool CheckDealerExists(Dealer dealer)
         {

@@ -16,9 +16,14 @@ namespace WebUI.Areas.Accounts
     {
         AccountAppService accountAppService = new AccountAppService();
         DealerAppService dealerAppService = new DealerAppService();
+        EmployeeAppService employeeAppService = new EmployeeAppService();
         // GET: Account
-        public ActionResult Register() => View();
-
+        
+        public ActionResult Register()
+        {
+            ViewBag.RegisterType = "Become A Dealer";
+            return View();
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterVM user)
@@ -41,10 +46,10 @@ namespace WebUI.Areas.Accounts
                 
                 accountAppService.AssignToRole(identityUser.Id, "Dealer");  //-------------
 
-                dealerAppService.SaveNewDealer(new DAL.Dealer { Id = identityUser.Id });   //To add UserId to Dealer table, like make the relatin manwal 
+                dealerAppService.SaveNewDealer(new DAL.Dealer { Id = identityUser.Id,  });   //To add UserId to Dealer table, like make the relatin manwal 
 
                 signinmanager.SignIn(identityUser, true, true);
-                return RedirectToAction("Index", "Home");//Dealer area 
+                return RedirectToAction("Index", "Cars", new { area = "Dealer"});//Dealer area 
             }
             else
             {
@@ -52,6 +57,46 @@ namespace WebUI.Areas.Accounts
                 return View(user);
             }
         }
+
+
+
+        public ActionResult EmployeeRegister() {
+            ViewBag.RegisterType = "Add New Employee";
+            return View("Register");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EmployeeRegister(RegisterVM user)
+        {
+            if (ModelState.IsValid == false)
+            {
+                return View(user);
+            }
+            IdentityResult result = accountAppService.Register(user);
+            if (result.Succeeded)
+            {
+                ApplicationUserIdentity identityUser = accountAppService.Find(user.UserName, user.PasswordHash);
+
+                accountAppService.AssignToRole(identityUser.Id, "Employee");  //-------------
+
+                employeeAppService.SaveNewEmployee(new Employee { Id = identityUser.Id, DealerId = User.Identity.GetUserId() });   //To add UserId to Dealer table, like make the relatin manwal 
+
+                return RedirectToAction("Index", "Employee", new { area = "Dealer"});//Dealer area
+            }
+            else
+            {
+                ModelState.AddModelError("", result.Errors.FirstOrDefault());
+                return View(user);
+            }
+        }
+
+
+
+
+
+
+
         public ActionResult Login() => View();
 
         [HttpPost]
@@ -72,7 +117,7 @@ namespace WebUI.Areas.Accounts
                         new ApplicationUserManager(), owinMAnager
                         );
                 signinmanager.SignIn(identityUser, true, true);
-                return RedirectToAction("Index", "Home"); //Dealer home
+                return RedirectToAction("Index", "Car", new { area = "Dealer"}); //Dealer home
             }
             else
             {

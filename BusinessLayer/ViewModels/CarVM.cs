@@ -24,7 +24,7 @@ namespace BusinessLayer.ViewModels
         public int Year { get; set; }
 
         [ForeignKey("Dealer")]
-        [Required]
+        
         public string DealerId { get; set; }
         public virtual Dealer Dealer { get; set; }
 

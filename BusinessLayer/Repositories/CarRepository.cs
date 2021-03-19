@@ -21,13 +21,13 @@ namespace BusinessLayer.Repositories
 
         public List<Car> GetAllCars()
         {
-            return GetAll().Include(x => x.Dealer.User).Include(x => x.Dealer).Include(x =>x.Dealer.User.Address).ToList();//
+            return GetAll().Include(x => x.Dealer.User).Include(x => x.Dealer).Include(x =>x.Dealer.User.Address).Include(c => c.Brand).ToList();//
         }
 
 
         public Car GetCarById(int id)
         {
-            return GetFirstOrDefault(l => l.Id == id);
+            return GetFirstOrDefault(l => l.Id == id);//include(x => x.Brand)
         }
 
         public bool InsertCar(Car car)

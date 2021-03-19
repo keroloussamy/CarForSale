@@ -140,7 +140,7 @@
         document.getElementById("container").className = "container-fluid p-0"; 
         $(function () {
 
-            AjaxCall('/Admin/Brand/GetBrands', null).done(function (response) {
+            AjaxCall('/Admin/Brands/GetBrands', null).done(function (response) {
                 if (response.length > 0) {
                     $('#BrandId').html('');
                     var options = '';

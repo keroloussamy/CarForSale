@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace WebUI.Areas.Admin
 {
-    public class BrandController : Controller
+    public class BrandsController : Controller
     {
         BrandAppService brandAppService = new BrandAppService();
         UnitOfWork unitOfWork = new UnitOfWork();

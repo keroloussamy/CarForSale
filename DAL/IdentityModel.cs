@@ -88,10 +88,12 @@ namespace DAL
 
         [ForeignKey("Dealer")]
         [Required]
+        [Display(Name = "Dealer")]
         public string DealerId { get; set; }
         public virtual Dealer Dealer { get; set; }
 
         [ForeignKey("Brand")]
+        [Display(Name = "Brand")]
         public int BrandId { get; set; }
         public virtual Brand Brand { get; set; }
     }
@@ -99,6 +101,7 @@ namespace DAL
     {
         public int Id { get; set; }
         [Required]
+        [Display(Name ="Brand")]
         public string Name { get; set; }
 
 
@@ -182,6 +185,7 @@ namespace DAL
 
         [ForeignKey("Dealer")]
         [Required]
+        [Display(Name = "Dealer")]
         public string DealerId { get; set; }
         public virtual Dealer Dealer { get; set; }
 
@@ -202,10 +206,12 @@ namespace DAL
 
         [ForeignKey("Dealer")]
         [Required]
+        [Display(Name = "Dealer")]
         public string DealerId { get; set; }
         public virtual Dealer Dealer { get; set; }
 
         [ForeignKey("Employee")]
+        [Display(Name = "Employee")]
         public string EmployeeId { get; set; }
         public virtual Employee Employee { get; set; }
 
@@ -220,6 +226,7 @@ namespace DAL
 
         [ForeignKey("Dealer")]
         [Required]
+        [Display(Name = "Dealer")]
         public string DealerId { get; set; }
         public virtual Dealer Dealer { get; set; }
     }

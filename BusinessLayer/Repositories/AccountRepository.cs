@@ -23,6 +23,12 @@ namespace BusinessLayer.Repositories
             return result;
 
         }
+        public ApplicationUserIdentity Find(string id)
+        {
+            ApplicationUserIdentity result = manager.FindById(id);
+            return result;
+
+        }
         public IdentityResult Register(ApplicationUserIdentity user)
         {
             IdentityResult result = manager.Create(user, user.PasswordHash);
@@ -34,5 +40,18 @@ namespace BusinessLayer.Repositories
             return result;
 
         }
+
+        public IdentityResult Update(ApplicationUserIdentity employee)
+        {
+
+            var user = manager.FindById(employee.Id);
+            user.UserName = employee.UserName;
+            user.Email = employee.Email;
+            user.PhoneNumber = employee.PhoneNumber;
+            IdentityResult result = manager.Update(user);
+            return result;
+
+        }
+
     }
 }

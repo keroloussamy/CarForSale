@@ -22,10 +22,6 @@ namespace BusinessLayer.AppService
         {
             return Mapper.Map<CarVM>(TheUnitOfWork.Car.GetCarById(id));
         }
-        //public List<CarVM> AdvSearch(SearchCarVM searchCarVM)
-        //{
-        //    return Mapper.Map<CarVM>(TheUnitOfWork.Car.GetCarById(id));
-        //}
 
 
         public bool SaveNewCar(CarVM carVM)

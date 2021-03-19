@@ -5,7 +5,7 @@
         <li>@* here dealer profile *@
             @Html.ActionLink("Hello " + User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
         </li>
-        <li>@Html.ActionLink("Log Out", "Logout", "Account")</li>
+        <li>@Html.ActionLink("Log Out", "Logout", "Account", new { area = "Accounts" }, new { @class = "nav-link" })</li>
     </ul>
 }
 else

@@ -37,13 +37,14 @@
 
                 @if (User.IsInRole("Admin"))
                 {
-                    <li class="nav-item">@Html.ActionLink("Add New Brand", "Index", "Brand", new { area = "Admin" }, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Add New Role", "Index", "Role", new { area = "Admin" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Add New Brand", "Index", "Brands", new { area = "Admin" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Add New Role", "Index", "Roles", new { area = "Admin" }, new { @class = "nav-link" })</li>
                 }
                 else if (User.IsInRole("Dealer"))
                 {
                     <li class="nav-item">@Html.ActionLink("My Cars", "Index", "Car", new { area = "Dealer" }, new { @class = "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Messages", "Index", "Message", new { area = "Dealer" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Employees", "Index", "Employee", new { area = "Dealer" }, new { @class = "nav-link" })</li>
                 }
                 else
                 {

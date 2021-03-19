@@ -146,7 +146,6 @@ namespace WebUI.Areas.Dealer.Controllers
             {
                 return HttpNotFound();
             }
-            //ViewBag.BrandId = new SelectList(unitOfWork.Brands, "ID", "Name", carVM.BrandId);
             return View(car);
         }
 
@@ -160,7 +159,6 @@ namespace WebUI.Areas.Dealer.Controllers
             else
             {
                 var car = carAppService.GetCar(id);
-                //ViewBag.BrandId = new SelectList(unitOfWork.Brands, "ID", "Name", carVM.BrandId);
                 return View(car);
             }
         }
