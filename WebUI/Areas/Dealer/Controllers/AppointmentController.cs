@@ -16,7 +16,16 @@ namespace WebUI.Areas.Dealer.Controllers
         UnitOfWork unitOfWork = new UnitOfWork();
         public ActionResult Index()
         {
-            return View(appointmentAppService.GetAllAppointmentWhere(User.Identity.GetUserId()));
+            var DealerId = User.Identity.GetUserId();
+            return View(appointmentAppService.GetAllAppointmentWhere(x => x.DealerId == DealerId));
+        }
+
+
+        //For Employees
+        public ActionResult AppointmentsForEmployee()
+        {
+            var EmployeeId = User.Identity.GetUserId();
+            return View("Index",appointmentAppService.GetAllAppointmentWhere(x => x.EmployeeId == EmployeeId));
         }
 
         public ActionResult Details(int id)
@@ -56,11 +65,8 @@ namespace WebUI.Areas.Dealer.Controllers
             {
                 return HttpNotFound();
             }
-            //IEnumerable<SelectListItem> items = 
             ViewBag.EmployeeId =unitOfWork.Employee.GetWhere(x => x.DealerId == appointment.DealerId).Select(d => new SelectListItem{ Value = d.Id, Text = d.User.UserName });
-            //new SelectList(unitOfWork.Employee.GetWhere(x => x.DealerId == appointment.DealerId), "ID", "Name");
-//            IEnumerable<SelectListItem> items = unitOfWork.Employee.GetWhere(x => x.DealerId == appointment.DealerId)
-//.Select(d => new SelectListItem { Value = d.Id, Text = d.User.UserName });
+            
             return View(appointment);
         }
 
@@ -93,6 +99,19 @@ namespace WebUI.Areas.Dealer.Controllers
                 return View(appointment);
             }
 
+        }
+
+        
+        
+        public ActionResult Delete(int id)
+        {
+            if (appointmentAppService.DeleteAppointment(id))
+                return RedirectToAction("Index");
+            else
+            {
+                TempData["MyErrorMessage"] = "Some Thing Wrong";
+                return RedirectToAction("Index");
+            }
         }
     }
 }

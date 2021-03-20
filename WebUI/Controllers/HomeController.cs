@@ -20,6 +20,10 @@ namespace WebUI.Controllers
         }
         
 
+
+
+
+
         [HttpPost]
         public ActionResult AdvSearch(SearchCarVM searchCarVM)
         {
@@ -46,6 +50,33 @@ namespace WebUI.Controllers
             return View("Cars", result);
         }
 
+      
+        public ActionResult ParaSearch(int MinPrice = 0, int MaxPrice = 0,string Condition = null)
+        {
+            var result = carAppService.GetAllCar();
+
+            if (Condition != null && Condition != "All")
+            {
+                if (Condition == "Used")
+                    result = result.Where(x => x.Condition == DAL.Condition.Used).ToList();
+                else
+                    result = result.Where(x => x.Condition == DAL.Condition.New).ToList();
+            }
+                if (MinPrice != 0)
+                    result = result.Where(x => x.Price >= MinPrice).ToList();
+                if (MaxPrice != 0)
+                    result = result.Where(x => x.Price <= MaxPrice).ToList();
+
+            return PartialView("_CarCardPartial", result);
+        }
+
+
+
+
+
+
+
+
         public ActionResult Cars()
         {
             ViewBag.CarType = "All Cars";
@@ -64,6 +95,17 @@ namespace WebUI.Controllers
             var cars = carAppService.GetAllCar().Where(c => c.Condition == Condition.Used);
             return View("Cars", cars.ToList());
         }
+
+
+
+
+
+
+
+
+
+
+
 
         public PartialViewResult MessagePartial(string DealerID)
         {
@@ -91,9 +133,9 @@ namespace WebUI.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var senderEmail = new MailAddress("keroloussamy98@gmail.com", "Cars For Sale");
+                    var senderEmail = new MailAddress("Put Your Email", "Cars For Sale");//Put your Email, will send by it 
                     var receiverEmail = new MailAddress(emailVM.DealerEmail, "Receiver");
-                    var password = "Put Your Password";                                                 //Put your Password
+                    var password = "Put Your Password";               //Put your Password
                     var sub = emailVM.Subject;
                     var body = "Client Name : " + emailVM.Name + "<br>" +
                                 "Client Email : " + emailVM.ClientEmail + "<br>" +

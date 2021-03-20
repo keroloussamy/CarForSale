@@ -3,6 +3,7 @@ using DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,10 +16,10 @@ namespace BusinessLayer.AppService
 
             return TheUnitOfWork.Appointment.GetAllAppointments();
         }
-        public List<Appointment> GetAllAppointmentWhere(string dealerId)
+        public List<Appointment> GetAllAppointmentWhere(Expression<Func<Appointment, bool>> filter)
         {
 
-            return TheUnitOfWork.Appointment.GetAllWhere(x => x.DealerId == dealerId);
+            return TheUnitOfWork.Appointment.GetAllWhere(filter);
         }
         public Appointment GetAppointment(int id)
         {

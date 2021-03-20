@@ -26,5 +26,12 @@ namespace WebUI.Areas.Admin.Controllers
             }
             return View(employee);
         }
+
+
+
+
+        //Delete   ==>     Not implemented 
+
+
     }
 }

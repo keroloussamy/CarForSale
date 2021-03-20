@@ -49,7 +49,7 @@ namespace WebUI.Areas.Accounts
                 dealerAppService.SaveNewDealer(new DAL.Dealer { Id = identityUser.Id,  });   //To add UserId to Dealer table, like make the relatin manwal 
 
                 signinmanager.SignIn(identityUser, true, true);
-                return RedirectToAction("Index", "Cars", new { area = "Dealer"});//Dealer area 
+                return RedirectToAction("Index", "Car", new { area = "Dealer"});//Dealer area 
             }
             else
             {
@@ -117,7 +117,7 @@ namespace WebUI.Areas.Accounts
                         new ApplicationUserManager(), owinMAnager
                         );
                 signinmanager.SignIn(identityUser, true, true);
-                return RedirectToAction("Index", "Car", new { area = "Dealer"}); //Dealer home
+                return RedirectToAction("Index", "Home", new { area = ""});
             }
             else
             {

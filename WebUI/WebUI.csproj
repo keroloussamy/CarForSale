@@ -430,6 +430,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_AdvSearchPartial.cshtml" />
     <Content Include="Views\Shared\_AppointmentPartial.cshtml" />
+    <Content Include="Views\Shared\_CarCardPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
