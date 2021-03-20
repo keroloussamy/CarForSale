@@ -33,7 +33,9 @@
 
         </div>
     </div>
-    <div class="col-md-8" id="carid"></div>
+    <div class="col-md-8" id="carid">
+        @Html.Partial("_CarCardPartial",Model)
+    </div>
     </div>
     @* Add style to this page *@
     @section head{

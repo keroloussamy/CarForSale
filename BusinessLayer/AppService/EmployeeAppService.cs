@@ -3,6 +3,7 @@ using DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +15,11 @@ namespace BusinessLayer.AppService
         {
 
             return TheUnitOfWork.Employee.GetAllEmployees();
+        }
+        public List<Employee> GetAllEmployeeWhere(Expression<Func<Employee, bool>> filter)
+        {
+
+            return TheUnitOfWork.Employee.GetEmployeesWhere(filter);
         }
         public ApplicationUserIdentity GetEmployeeAsUSer(string id)
         {

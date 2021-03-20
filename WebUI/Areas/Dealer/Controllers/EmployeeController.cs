@@ -1,20 +1,24 @@
 ﻿using BusinessLayer.AppService;
 using DAL;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebUI.Models;
 
 namespace WebUI.Areas.Dealer.Controllers
 {
+    [CustomAuthorize(Roles = "Dealer")]
     public class EmployeeController : Controller
     {
         EmployeeAppService employeeAppService = new EmployeeAppService();
 
         public ActionResult Index()
         {
-            return View(employeeAppService.GetAllEmployee());
+            var DealerId = User.Identity.GetUserId();
+            return View(employeeAppService.GetAllEmployeeWhere(x => x.DealerId == DealerId));
         }
 
         public ActionResult Details(string id)

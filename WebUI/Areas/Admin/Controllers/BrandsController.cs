@@ -7,9 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebUI.Models;
 
 namespace WebUI.Areas.Admin
 {
+    [CustomAuthorize(Roles ="Admin")]
     public class BrandsController : Controller
     {
         BrandAppService brandAppService = new BrandAppService();
@@ -19,7 +21,7 @@ namespace WebUI.Areas.Admin
         {
             return View(brandAppService.GetBrands());
         }
-
+        [AllowAnonymous]
         public JsonResult GetBrands()
         {
             return Json(brandAppService.GetBrands(), JsonRequestBehavior.AllowGet);

@@ -8,9 +8,11 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebUI.Models;
 
 namespace WebUI.Areas.Dealer.Controllers
 {
+    [CustomAuthorize(Roles = "Dealer")]
     public class CarController : Controller
     {
         // GET: Dealer/Car
@@ -21,6 +23,7 @@ namespace WebUI.Areas.Dealer.Controllers
             return View(carAppService.GetAllCar().Where(c => c.DealerId == User.Identity.GetUserId()));
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public JsonResult CarsForBrand(int BrandId)
         {

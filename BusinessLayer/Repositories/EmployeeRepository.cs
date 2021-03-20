@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,7 +25,10 @@ namespace BusinessLayer.Repositories
             return GetAll().Include(d => d.User).Include(e=>e.User.Address).Include(e=>e.User.Roles).ToList();
         }
 
-
+        public List<Employee> GetEmployeesWhere(Expression<Func<Employee, bool>> filter)
+        {
+            return GetWhere(filter).Include(d => d.User).Include(e => e.User.Address).Include(e => e.User.Roles).ToList();
+        }
 
         public Employee GetEmployeeById(string id)
         {

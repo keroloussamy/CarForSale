@@ -7,9 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebUI.Models;
 
 namespace WebUI.Areas.Dealer.Controllers
 {
+    [CustomAuthorize(Roles = "Dealer")]
     public class MessageController : Controller
     {
         // GET: Dealer/Message
@@ -43,7 +45,7 @@ namespace WebUI.Areas.Dealer.Controllers
         //    return View(messageVM);
         //}
 
-        // POST: Dealer/Message/Create
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult Create(MessageVM messageVM)
         {

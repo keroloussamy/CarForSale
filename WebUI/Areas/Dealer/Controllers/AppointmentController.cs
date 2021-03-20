@@ -7,13 +7,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebUI.Models;
 
 namespace WebUI.Areas.Dealer.Controllers
 {
+    
     public class AppointmentController : Controller
     {
         AppointmentAppService appointmentAppService = new AppointmentAppService();
         UnitOfWork unitOfWork = new UnitOfWork();
+
+
+        [CustomAuthorize(Roles = "Dealer")]
         public ActionResult Index()
         {
             var DealerId = User.Identity.GetUserId();
@@ -21,13 +26,14 @@ namespace WebUI.Areas.Dealer.Controllers
         }
 
 
-        //For Employees
+        [CustomAuthorize(Roles = "Dealer, Employee")]
         public ActionResult AppointmentsForEmployee()
         {
             var EmployeeId = User.Identity.GetUserId();
             return View("Index",appointmentAppService.GetAllAppointmentWhere(x => x.EmployeeId == EmployeeId));
         }
 
+        [CustomAuthorize(Roles = "Dealer, Employee")]
         public ActionResult Details(int id)
         {
             var message = appointmentAppService.GetAppointment(id);
@@ -40,6 +46,7 @@ namespace WebUI.Areas.Dealer.Controllers
 
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Create(Appointment appointment)
         {
             if (ModelState.IsValid)
@@ -57,7 +64,7 @@ namespace WebUI.Areas.Dealer.Controllers
             }
 
         }
-
+        [CustomAuthorize(Roles = "Dealer")]
         public ActionResult Edit(int id)
         {
             var appointment = appointmentAppService.GetAppointment(id);
@@ -101,8 +108,8 @@ namespace WebUI.Areas.Dealer.Controllers
 
         }
 
-        
-        
+
+        [CustomAuthorize(Roles = "Dealer")]
         public ActionResult Delete(int id)
         {
             if (appointmentAppService.DeleteAppointment(id))
