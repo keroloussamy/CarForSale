@@ -18,6 +18,7 @@ namespace WebUI.Areas.Accounts
         AccountAppService accountAppService = new AccountAppService();
         DealerAppService dealerAppService = new DealerAppService();
         EmployeeAppService employeeAppService = new EmployeeAppService();
+        NotificationAppService notificationAppService = new NotificationAppService();
         // GET: Account
         
         public ActionResult Register()
@@ -45,9 +46,12 @@ namespace WebUI.Areas.Accounts
                         );
                 ApplicationUserIdentity identityUser = accountAppService.Find(user.UserName, user.PasswordHash);
                 
-                accountAppService.AssignToRole(identityUser.Id, "Dealer");  //-------------
+                accountAppService.AssignToRole(identityUser.Id, "Dealer"); //Add user to Role
+
 
                 dealerAppService.SaveNewDealer(new DAL.Dealer { Id = identityUser.Id,  });   //To add UserId to Dealer table, like make the relatin manwal 
+
+                notificationAppService.SaveNewNotification(new Notification { Id = identityUser.Id, MessageNotification = 0 }); //To add UserId to Notification table, like make the relatin manwal
 
                 signinmanager.SignIn(identityUser, true, true);
                 return RedirectToAction("Index", "Car", new { area = "Dealer"});//Dealer area 

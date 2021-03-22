@@ -75,6 +75,8 @@
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
     <script>
+        
+
         $('#myForm').submit(function (e) {
             e.preventDefault();
             $.ajax(
@@ -89,5 +91,7 @@
                 }
             });
         });
+
     </script>
 }
+

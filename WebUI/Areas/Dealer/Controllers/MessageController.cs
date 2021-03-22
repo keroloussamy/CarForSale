@@ -2,12 +2,14 @@
 using BusinessLayer.Bases;
 using BusinessLayer.ViewModels;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebUI.Models;
+using WebUI.MyHubs;
 
 namespace WebUI.Areas.Dealer.Controllers
 {
@@ -16,12 +18,25 @@ namespace WebUI.Areas.Dealer.Controllers
     {
         // GET: Dealer/Message
         MessageAppService messageAppService = new MessageAppService();
-
+        NotificationAppService notificationAppService = new NotificationAppService();
         public ActionResult Index()
         {
+            notificationAppService.SetNotificationCountToZero(User.Identity.GetUserId());
+            // Push Notify All Connect Client To set Count to zero
+            IHubContext messageHubContext =
+                GlobalHost.ConnectionManager.GetHubContext<MessageHub>();
+            messageHubContext.Clients.All.SetNotificationCountToZero(User.Identity.GetUserId());
+            
             return View(messageAppService.GetAllMessage().Where(c => c.DealerId == User.Identity.GetUserId()));
         }
 
+
+        //[ChildActionOnly]
+        [HttpPost]
+        public ActionResult IndexMessagesPartial()
+        {
+            return PartialView("_IndexMessagesPartial", messageAppService.GetAllMessage().Where(c => c.DealerId == User.Identity.GetUserId()));
+        }
 
 
         // GET: Dealer/Message/Details/5
@@ -52,7 +67,16 @@ namespace WebUI.Areas.Dealer.Controllers
             if (ModelState.IsValid)
             {
                 if (messageAppService.SaveNewMessage(messageVM))
-                    return RedirectToAction("Index", "Home", new { area = ""});
+                {
+                    // Push Notify All Connect Client to Increase Notification Count
+                    IHubContext messageHubContext =
+                        GlobalHost.ConnectionManager.GetHubContext<MessageHub>();
+                    messageHubContext.Clients.All.NotifyNewMessage(messageVM.DealerId);
+
+                    notificationAppService.IncrementNotificationCount(messageVM.DealerId);
+
+                    return RedirectToAction("Index", "Home", new { area = "" });
+                }
                 else
                 {
                     return View(messageVM);

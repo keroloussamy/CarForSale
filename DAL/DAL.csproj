@@ -59,6 +59,10 @@
     <Compile Include="Migrations\202103180046046_init.Designer.cs">
       <DependentUpon>202103180046046_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103221003043_addNotification.cs" />
+    <Compile Include="Migrations\202103221003043_addNotification.Designer.cs">
+      <DependentUpon>202103221003043_addNotification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -69,6 +73,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202103180046046_init.resx">
       <DependentUpon>202103180046046_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103221003043_addNotification.resx">
+      <DependentUpon>202103221003043_addNotification.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,60 +1,60 @@
-﻿    
+﻿
 @{
     ViewBag.Title = "Index";
 }
 
 <main role="main">
 
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    
-                    <img src="https://cdn.mattaki.com/hyundai/page-builder/content-pieces/7ab42be9-7288-4b36-90cc-0b3c18a18ab5/image.jpg" alt="Alternate Text" />
-                    <div class="container">
-                        <div class="carousel-caption text-left" style="top: 70px; bottom: auto;">
-                            <h1>Find Yours Now</h1>
-                            <p>Some representative placeholder content for the first slide of the carousel.</p>
-                            <p><a class="btn btn-lg btn-info" href="#AdvSearch">Search</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="https://www.hyundai.news/fileadmin/eu/models/20181213_hyundai_wins_at_next_green_car_awards/Kona-Electric-e2e.jpg" alt="Alternate Text" />
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
 
-                    <div class="container">
-                        <div class="carousel-caption">
-                            <h1>Another example headline.</h1>
-                            <p>Some representative placeholder content for the second slide of the carousel.</p>
-                            <p><a class="btn btn-lg btn-info" href="#">Learn more</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="https://www.hyundai.news/fileadmin/eu/brand/20190924_hyundai_promise/hyundai-used-car-range-e2e.jpg" alt="Alternate Text" />
-
-                    <div class="container">
-                        <div class="carousel-caption">
-                            <h1>Become A Dealer</h1>
-                            <p>Some representative placeholder content for the third slide of this carousel.</p>
-                            <p>@Html.ActionLink("Become A Dealer", "Register", "Account", new { area = "Accounts" }, new { @class = "btn btn-lg btn-info" })</p>
-                        </div>
+                <img src="https://cdn.mattaki.com/hyundai/page-builder/content-pieces/7ab42be9-7288-4b36-90cc-0b3c18a18ab5/image.jpg" alt="Alternate Text" />
+                <div class="container">
+                    <div class="carousel-caption text-left" style="top: 70px; bottom: auto;">
+                        <h1>Find Yours Now</h1>
+                        <p>Some representative placeholder content for the first slide of the carousel.</p>
+                        <p><a class="btn btn-lg btn-info" href="#AdvSearch">Search</a></p>
                     </div>
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+            <div class="carousel-item">
+                <img src="https://www.hyundai.news/fileadmin/eu/models/20181213_hyundai_wins_at_next_green_car_awards/Kona-Electric-e2e.jpg" alt="Alternate Text" />
+
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Another example headline.</h1>
+                        <p>Some representative placeholder content for the second slide of the carousel.</p>
+                        <p><a class="btn btn-lg btn-info" href="#">Learn more</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://www.hyundai.news/fileadmin/eu/brand/20190924_hyundai_promise/hyundai-used-car-range-e2e.jpg" alt="Alternate Text" />
+
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Become A Dealer</h1>
+                        <p>Some representative placeholder content for the third slide of this carousel.</p>
+                        <p>@Html.ActionLink("Become A Dealer", "Register", "Account", new { area = "Accounts" }, new { @class = "btn btn-lg btn-info" })</p>
+                    </div>
+                </div>
+            </div>
         </div>
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
 
     @Html.Partial("_AdvSearchPartial")
     <!-- Marketing messaging and featurettes
@@ -137,14 +137,16 @@
 }
 @section scripts{
     <script>
-        document.getElementById("container").className = "container-fluid p-0"; 
+        
+
+        document.getElementById("container").className = "container-fluid p-0";
         $(function () {
 
             AjaxCall('/Admin/Brands/GetBrands', null).done(function (response) {
                 if (response.length > 0) {
                     $('#BrandId').html('');
                     var options = '';
-                    options += '<option value='+null+'>Brands</option>';
+                    options += '<option value=' + null + '>Brands</option>';
                     for (var i = 0; i < response.length; i++) {
                         options += '<option value="' + response[i].Id + '">' + response[i].Name + '</option>';
                     }
@@ -159,7 +161,7 @@
                 var BrandId = $('#BrandId').val();
                 if (BrandId == "null") {
                     $('#Model').html('');
-                    var options = '<option value=' + null +'>Modles</option>';
+                    var options = '<option value=' + null + '>Modles</option>';
                     $('#Model').append(options);
                     return;
                 }
@@ -168,7 +170,7 @@
                     if (response.length > 0) {
                         $('#Model').html('');
                         var options = '';
-                        options += '<option value=' + null +'>Models</option>';
+                        options += '<option value=' + null + '>Models</option>';
                         for (var i = 0; i < response.length; i++) {
                             options += '<option value="' + response[i] + '">' + response[i] + '</option>';
                         }
@@ -184,7 +186,7 @@
 
         function AjaxCall(url, data, type) {
             $('#Model').html('');
-            var options = '<option value=' + null +'>Modles</option>';
+            var options = '<option value=' + null + '>Modles</option>';
             $('#Model').append(options);
             return $.ajax({
                 url: url,

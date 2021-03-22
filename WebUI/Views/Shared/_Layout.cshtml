@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity;
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -44,17 +45,18 @@
                 else if (User.IsInRole("Dealer"))
                 {
                     <li class="nav-item">@Html.ActionLink("My Cars", "Index", "Car", new { area = "Dealer" }, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Messages", "Index", "Message", new { area = "Dealer" }, new { @class = "nav-link" })</li>
+
+                    <li class="nav-item">@Html.ActionLink("Messages", "Index", "Message", new { area = "Dealer" }, new { @class = "nav-link" }) </li>
+                    @Html.Action("Alerts", "Notification", new { area = "Accounts" })
                     <li class="nav-item">@Html.ActionLink("Employees", "Index", "Employee", new { area = "Dealer" }, new { @class = "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Appointments", "Index", "Appointment", new { area = "Dealer" }, new { @class = "nav-link" })</li>
                 }
-                else if(User.IsInRole("Employee"))
+                else if (User.IsInRole("Employee"))
                 {
                     <li class="nav-item">@Html.ActionLink("Appointments", "AppointmentsForEmployee", "Appointment", new { area = "Dealer" }, new { @class = "nav-link" })</li>
-                    
                 }
             </ul>
-            
+
             <ul class="navbar-nav">
                 @Html.Partial("_LoginPartial")
             </ul>
@@ -77,6 +79,29 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+    <script src="~/Scripts/jquery.signalR-2.4.1.min.js"></script>
+    <script src="~/signalr/js"></script>
+    <script>
+        var proxy = $.connection.MessageHub;
+        $.connection.hub.start().done(
+            function () {
+                console.log("Started");
+            });
+        proxy.client.NotifyNewMessage = function (dealerId) {
+            console.log(dealerId);
+            console.log("@User.Identity.GetUserId()");
+            if (dealerId == "@User.Identity.GetUserId()")
+                document.getElementById("Messages").innerHTML = parseInt(document.getElementById("Messages").innerHTML)+1;
+
+        }
+        proxy.client.SetNotificationCountToZero = function (dealerId) {
+            if (dealerId == "@User.Identity.GetUserId()")
+                document.getElementById("Messages").innerHTML = 0;
+        }
+
+    </script>
     @RenderSection("scripts", required: false)
+
 </body>
 </html>

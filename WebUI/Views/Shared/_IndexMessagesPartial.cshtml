@@ -1,0 +1,59 @@
+﻿@model IEnumerable<BusinessLayer.ViewModels.MessageVM>
+
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.body)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr id="row_@item.Id">
+            <td>
+                @Html.DisplayFor(modelItem => item.body)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.ActionLink("See", "Details", new { id = item.Id })
+            </td>
+            <td>
+                <a href="#" class="btn btn-danger" onclick="ConfirmDelete(@item.Id)"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAb1BMVEX///8AAAAQEBAwMDD6+vrCwsKzs7M5OTlJSUnc3NyVlZWSkpLk5OSGhoZzc3Pi4uL09PRgYGBAQEBubm7Ozs6Li4uioqLr6+vIyMisrKwbGxtbW1tOTk57e3vX19dUVFQmJiacnJwiIiIyMjKxsbHbysbqAAAE9UlEQVR4nO2d63baOhBGEZhgLikGQgiQpiE57/+MbVbbFJjPxBqNPfI63/7tzJodbF1GsjUY2FONt+VoGOIYjsrtuGohG3OK8THS7ZzjuPAW+Iq71wS/D17vvBVuMi0T/T4op94a9Twa+H3w6C1SQ7ExEgxhk+fT+GwmGMKztwxibSgYwtpbR7IyFQxh5S10zd5YMIS9t9IlC3PBEBbeUhd8a8Hwm7fUOcsWBENYemud8b0Vw+/eWv8oWhEMIZ9+32q0dk0+o7dRS4Yjb7G/PLUkGMKTt9of8HBmXUYBY2QysIG9/XEXGaWC7XEevf4cZDZRxEG3wtw8Ww3of68pRTygQObZKrgDeQ1VPRmaf+VQtZmAvLaqSGh+orndjXlB95ZuRLlDNdYX43zjQcUZbSOPmtONabYKdugn1HbUUxQsttux5gRyelNHQ23NyTBbBQUakuoHzKhdHvnOMMbovkpICYUb26Wr4AfIKGXiugXxfphlqwAOSVOWHWA5xHNweg/ySStXo6W5e6NsFcDqRdo4y/rBTgQNs97S0inQ+qNfcRh1X6nznRmI6baIAac7qUvxFQr6YJLvL6b7WQQnVHk4nOZpnA4ganmKSWxf15pX1stHfqzwnYR6774CRwnt1QQ9QNMb1Ij1lxkwbGOBzA+0NEfDfkHD/kPD/kPD/vP/NGxru4EPqGYLl1h6C1zQaWfbjw81NVs4ve4jh9q1jmo5PWch617Dyys8WMpVxtfF5RXNa0Xv0rDx37aHNHxXx5ILS3ka6vdO0dAHGsZAQx9oGAMNfaBhDDT0gYYx0NAHGsZAQx9oGAMNfaBhDDT0gYYx0PAvD7P7T2Z1e0Gr/fbzou2+bmmhQajuDa+/S4M/LjO+TGwI36JoFKp7Q7FhHy3eyfcW0DsGYgkTbdPv3BBsWwbJy10CYKUdvL4B7ubODcG+VLC5U27PBZtcm4Xq3BC8jSWfsUK+aTqRzxh42QK8vUFDGtKQhjSkIQ1pSEMa0pCGNKQhDWlIQxrSkIY0pCENaUhDGtKQhjSkIQ1pSEMa0pCGNKQhDWlIQxrSkIY0pCENaUhDGtKQhjSkIQ1pSEMa0pCGNKQhDWlIQxrSkIY0pCENaUhDQ0N5/PO6N4bgwHdwnNRGXLSRF4FDtZYZGA7EmUmv4CJ5SDk6TrxRqO4NxfHc8HOH1x9sg2cSNwrl8GXI6cVDtq45FXt+EajmCPYmoXy+7rn45Ea46vOiW4dqfRmK3y+NgYY+0DAGGvpAwxho6AMNY6ChDzSMgYY+0DAGaRgMM9Uik3pXx3rvieFEHUuWcQM8u6JTCpnUWh1MlnFRKbRjQFEV1u0asZLBHg1z1fEokwJHZTREnD4SQmmYq45SJnVSB5OF6hB2hslq2IGc4Jk1jQBnhoStYbYatiAnsLjRENBshaHvj7iT/X1SF4bCrcyy1QAav3BMiAeamtolh06Yo4TQKlZT0IP4awhRegGGICGt8SvQbZobKTdpzW2aGWAhPIKpd/pf83Zrqa4BqO3KC/2A5jdgnJsZybMduYkiL1K6it+Ao/FyQj+9/8d/3hI3qdkWEUfO96nNdLUCBalMAPuqVKApWRboK1DXZNrvTxL7+gvFHMena0PBwWCBR/WerKwLm+IgW2dSB2uAl2dvqTNWt/bP6XnIZRi+aa8uXYxnx9HB0e0wWp2e4h7An6IRiYFeum+tAAAAAElFTkSuQmCC" width="20" height="20" alt="" /></a>
+            </td>
+        </tr>
+    }
+
+</table>
+

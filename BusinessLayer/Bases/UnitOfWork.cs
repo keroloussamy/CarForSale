@@ -51,6 +51,16 @@ namespace BusinessLayer.Bases
         }
 
 
+        public NotificationRepository notification;//=> throw new NotImplementedException();
+        public NotificationRepository Notification
+        {
+            get
+            {
+                if (notification == null)
+                    notification = new NotificationRepository(EC_DbContext);
+                return notification;
+            }
+        }
 
         public DealerRepository dealer;//=> throw new NotImplementedException();
         public DealerRepository Dealer

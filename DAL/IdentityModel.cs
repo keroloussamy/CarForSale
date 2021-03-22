@@ -14,6 +14,7 @@ namespace DAL
     public class ApplicationUserIdentity : IdentityUser
     {
         public virtual Address Address { get; set; }
+        public virtual Notification Notification { get; set; }
     }
 
     public class ApplicationUserStore : UserStore<ApplicationUserIdentity>
@@ -231,6 +232,16 @@ namespace DAL
         public virtual Dealer Dealer { get; set; }
     }
 
+    public class Notification
+    {
+        [Key, ForeignKey("User")]
+        public string Id { get; set; }
+
+        public virtual ApplicationUserIdentity User { get; set; }
+        public int MessageNotification { get; set; }
+
+
+    }
     /*=========================== End of Models ========================*/
 
     public class ApplicationDBContext : IdentityDbContext<ApplicationUserIdentity>
